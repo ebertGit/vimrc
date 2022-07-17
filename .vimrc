@@ -1,3 +1,11 @@
+"##################################
+"# Vim起動時に、判別の優先度を定める設定
+"##################################
+
+" ファイルを読み込む時の、文字コード自動判別の順番
+" 利用可能なエンコード名称は、:help encoding-valuesで確認
+:set fileencodings=utf-8,cp932,euc-jp,sjis,cp936,euc-cn,cp950,big5,euc-tw
+
 " 不与 Vi 兼容（采用 Vim 自己的操作命令）
 set nocompatible
 
@@ -6,10 +14,29 @@ set number
 set relativenumber
 set cursorline
 
-"是否显示状态栏。0 表示不显示，1 表示只在多窗口时显示，2 表示显示
+" 是否显示状态栏。0 表示不显示，1 表示只在多窗口时显示，2 表示显示(默认只显示文件名)
 set laststatus=2
+
 " 在状态栏显示光标的当前位置（位于哪一行哪一列）
-set ruler
+"set ruler
+
+" ステータスラインに表示する内容を設定する
+set statusline=%F%m%h%w\ %<[ENC=%{&fenc!=''?&fenc:&enc}]\ [FMT=%{&ff}]\ [TYPE=%Y]\ %=[CODE=0x%02B]\ [POS=%l/%L(%02v)]
+" 各項目の意味合い（:help statuslineで確認）：
+" %f - Path to the file in the buffer, as typed or relative to current directory.
+" %t - File name (tail) of file in the buffer.
+" %F – ファイルのフルパス。
+" %m – 編集されているなら [+]。リードオンリーなら [-]。
+" %h – Help buffer なら [HELP] と表示。
+" %w – Preview window なら [PREVIEW] と表示。
+" %< – ウィンドウの横幅が縮まってもここまでは表示することを保証。
+" %{&fenc!=''?&fecn:&enc} – fileencoding が設定されていればその値、設定されていなければ encoding を表示。
+" %{&ff} – fileformat の値を表示。%{&fileformat} の省略形。(dos, unix, mac)
+" %Y – filetype の値を表示。通常はこれに対応する syntax file が読み込まれているはず。
+" %02B – カーソル位置の文字コードを16進数で表示。
+" %l – カーソル位置の行番号。
+" %L – ファイルの行数。
+" %02v – カーソル位置の桁番号。
 
 " 垂直滚动时，光标距离顶部/底部的位置（单位：行）
 set scrolloff=5
