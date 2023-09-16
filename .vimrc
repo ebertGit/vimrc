@@ -66,11 +66,22 @@ set wildmode=longest:list,full
 
 let mapleader="\<space>"
 
+" 移动到行首行尾
 nnoremap <leader>h ^
 nnoremap <leader>l $
-
 vnoremap <leader>h ^
-vnoremap <leader>l $
+vnoremap <leader>l $h
 
+" 退出插入模式
 inoremap jj <esc>
 
+" 缩进
+nmap <tab> V>
+nmap <s-tab> V<
+vmap <tab> >gv
+vmap <s-tab> <gv
+
+" 保存
+nnoremap <leader>s :w<CR>
+" 退出
+nnoremap <leader>q :q<CR>
